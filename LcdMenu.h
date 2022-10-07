@@ -145,6 +145,6 @@ class LCDMenu{
     input = InputExit;
   }
 
-}
+};
 
 #endif
