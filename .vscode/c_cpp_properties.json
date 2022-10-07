@@ -3,7 +3,9 @@
         {
             "name": "Mac",
             "includePath": [
-                "${default}"
+                "${default}",
+                "${workspaceFolder}/**",
+                "Users/danielschmocker/Documents/Arduino/**"
             ],
             "defines": [],
             "macFrameworkPath": [],
