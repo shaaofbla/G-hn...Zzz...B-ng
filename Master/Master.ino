@@ -1,13 +1,12 @@
 #include "CMBMenu.hpp"
-
 #include "DFRobot_RGBLCD1602.h"
 
 #include "Button2.h"
 #include "ESPRotary.h"
 
-
 #include "LcdTimer.h"
 #include "LcdMenu.h"
+#include "CheckModuleState.h"
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -25,9 +24,10 @@ DFRobot_RGBLCD1602 lcd(16,2);
 ESPRotary r;
 Button2 b;
 
-int minutes = 1;
-LCDTimer lcdTimer(1000,minutes*60*1000);
-LCDMenu lcdMenu(10);
+int minutes = 5;
+LCDTimer lcdTimer(1000, minutes * 60 * 1000);
+LCDMenu lcdMenu(3);
+CheckModuleState CheckModuleState(100);
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -45,12 +45,17 @@ void setup(){
   b.begin(BUTTON_PIN);
   b.setTapHandler(click);
   b.setLongClickHandler(resetPosition);
-  
 }
 
 void loop(){
   r.loop();
   b.loop();
+  //lcdMenu.Update(lcd);
+  //Serial.println(lcdMenu.fid);
+  if (lcdMenu.items == 0){
+    lcdTimer.Update(lcd);
+  }
+  CheckModuleState.Update();
 }
 
 /*
@@ -63,16 +68,33 @@ void rotate(ESPRotary& r) {
 void showDirection(ESPRotary& r) {
   if (r.directionToString(r.getDirection()) == "RIGHT"){
     lcdMenu.setInputRight();
+    lcdMenu.Update(lcd);
+    const char* info;
+    lcdMenu.Menu.getInfo(info);
+    Serial.println(info);
+    //Serial.println(lcdMenu.fid);
   } else {
     lcdMenu.setInputLeft();
+    lcdMenu.Update(lcd);
+    const char* info;
+    lcdMenu.Menu.getInfo(info);
+    Serial.println(info);
+    //Serial.println(lcdMenu.fid);
   } 
 }
  
 void click(Button2& btn) {
   lcdMenu.setInputEnter();
+  lcdMenu.Update(lcd);
+  const char* info;
+  lcdMenu.Menu.getInfo(info);
+  Serial.println(info);
+  
 }
 
 void resetPosition(Button2& btn) {
   r.resetPosition();
   lcdMenu.setInputExit();
+  lcdMenu.Update(lcd);
+  Serial.println(lcdMenu.fid);
 }

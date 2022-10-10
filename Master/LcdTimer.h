@@ -22,14 +22,12 @@ class LCDTimer{
     void Update(DFRobot_RGBLCD1602 lcd){
       if((millis() - lastUpdate) > updateInterval){
         lastUpdate = millis();
-        lcd.setRGB((int)random(0,255),(int)random(0,255), (int)random(0,255));
+        //lcd.setRGB((int)random(0,255),(int)random(0,255), (int)random(0,255));
         showTime(lcd);
       }
     }
-    
   
     void showTime(DFRobot_RGBLCD1602 lcd){
-  
         lcd.setCursor(0, 1);
         int showTime = countDownTime-millis();
         if (showTime < 0){
@@ -41,5 +39,4 @@ class LCDTimer{
     }
     
 };
-
 #endif
