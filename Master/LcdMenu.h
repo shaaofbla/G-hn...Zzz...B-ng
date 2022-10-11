@@ -29,7 +29,7 @@ class LCDMenu{
     
     InputType input = InputNone;
     
-    const char TextCountDown[18] =      {"Time left:      "};
+    const char TextCountDown[18] =      {"Time Modules    "};
     const char TextModulesSolved[18]  = {"Modules solved: "};
     const char TextErrors[18]  =        {"Errors:         "};
 
@@ -38,6 +38,8 @@ class LCDMenu{
     //bool layerChanged=false;
     int fid = 0;
     const char* info;
+
+    bool showTimer = true;
     
   public:
     LCDMenu(int _itemMax){
@@ -47,10 +49,15 @@ class LCDMenu{
       Menu.addNode(0, TextErrors, MenuErrors);
 
       Menu.buildMenu(info);
-      Menu.printMenu();
+      Menu.printMenu(); // To Serial
+      //printMenuEntry(info, lcd);
     }
 
-  void Update(DFRobot_RGBLCD1602 lcd){
+  void init(DFRobot_RGBLCD1602 lcd){
+    printMenuEntry(info, lcd);
+  }
+
+  void Update(DFRobot_RGBLCD1602 lcd, int errors, int N_ModuleSolved){
       
       switch(input) {
         case InputExit:
@@ -71,9 +78,13 @@ class LCDMenu{
           break;
         default:
           break;
-    
+      }
+
     items = limitItems(0, itemMax, items);
-    
+
+    Serial.println(info);
+    Serial.println(input);
+
     if (InputNone != input) {
       Serial.println(input);
       fid = Menu.getInfo(info);
@@ -84,27 +95,34 @@ class LCDMenu{
     switch (fid) {
       case MenuCountDown:
         //lcdTimer.Update(lcd);
+        showTimer = true;
         break;
       case MenuModulesSolved:
-        ModulesSolved(lcd);
+        ModulesSolved(lcd, N_ModuleSolved);
+        showTimer = false;
         break;
       case MenuErrors:
-        Errors(lcd);
+        Errors(lcd, errors);
+        showTimer = false;
         break;
       default:
         break;
       }  
     }
-  }
   
-  void Errors(DFRobot_RGBLCD1602 lcd){
+  
+  void Errors(DFRobot_RGBLCD1602 lcd, int errors){
     lcd.setCursor(0, 1);
-    lcd.print("0/3");
+    lcd.print(errors);
+    lcd.setCursor(1,1);
+    lcd.print("/3  ");
   }
 
-  void ModulesSolved(DFRobot_RGBLCD1602 lcd){
+  void ModulesSolved(DFRobot_RGBLCD1602 lcd, int ModulesSolved){
     lcd.setCursor(0, 1);
-    lcd.print("2/4");
+    lcd.print(ModulesSolved);
+    lcd.setCursor(1,1);
+    lcd.print("/3  ");
   }
 
   int limitItems(int min, int max, int item){
@@ -131,10 +149,6 @@ class LCDMenu{
     String info_s;
     MBHelper::stringFromPgm(f_Info, info_s);
 
-    //lcd.setCursor(0,0);
-    //lcd.print("                ");
-    //lcd.setCursor(0,1);
-    //lcd.print("                ");
     lcd.setCursor(0, 0);
     lcd.print(info_s);
  }

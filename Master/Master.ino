@@ -37,6 +37,8 @@ void setup(){
   lcd.clear();
   lcd.init(); 
 
+  lcdMenu.init(lcd);
+
   r.begin(ROTARY_PIN1, ROTARY_PIN2, CLICKS_PER_STEP);
   //r.setChangedHandler(rotate);
   r.setLeftRotationHandler(showDirection);
@@ -52,10 +54,21 @@ void loop(){
   b.loop();
   //lcdMenu.Update(lcd);
   //Serial.println(lcdMenu.fid);
-  if (lcdMenu.items == 0){
-    lcdTimer.Update(lcd);
+  if (CheckModuleState.GameOver){
+    lcd.clear();
+    lcd.blink();
+    lcd.setCursor(0,0);
+    lcd.print("GAME OVER");
+    lcd.setCursor(0,1);
+    lcd.print("You are lost forever...");
+    lcd.autoscroll();
+    delay(60000);
+  } else {
+      if (lcdMenu.showTimer){
+        lcdTimer.Update(lcd);
+        CheckModuleState.Update();
+      }
   }
-  CheckModuleState.Update();
 }
 
 /*
@@ -68,33 +81,29 @@ void rotate(ESPRotary& r) {
 void showDirection(ESPRotary& r) {
   if (r.directionToString(r.getDirection()) == "RIGHT"){
     lcdMenu.setInputRight();
-    lcdMenu.Update(lcd);
-    const char* info;
-    lcdMenu.Menu.getInfo(info);
-    Serial.println(info);
-    //Serial.println(lcdMenu.fid);
+    lcdMenu.Update(lcd, CheckModuleState.Errors, CheckModuleState.N_ModulesSolved);
   } else {
     lcdMenu.setInputLeft();
-    lcdMenu.Update(lcd);
+    lcdMenu.Update(lcd, CheckModuleState.Errors, CheckModuleState.N_ModulesSolved);
     const char* info;
     lcdMenu.Menu.getInfo(info);
-    Serial.println(info);
+   // Serial.println(info);
     //Serial.println(lcdMenu.fid);
   } 
 }
  
 void click(Button2& btn) {
   lcdMenu.setInputEnter();
-  lcdMenu.Update(lcd);
+  lcdMenu.Update(lcd, CheckModuleState.Errors, CheckModuleState.N_ModulesSolved);
   const char* info;
   lcdMenu.Menu.getInfo(info);
-  Serial.println(info);
+  //Serial.println(info);
   
 }
 
 void resetPosition(Button2& btn) {
   r.resetPosition();
   lcdMenu.setInputExit();
-  lcdMenu.Update(lcd);
-  Serial.println(lcdMenu.fid);
+  lcdMenu.Update(lcd, CheckModuleState.Errors, CheckModuleState.N_ModulesSolved);
+ // Serial.println(lcdMenu.fid);
 }

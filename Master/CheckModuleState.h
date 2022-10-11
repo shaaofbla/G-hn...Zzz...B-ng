@@ -5,19 +5,24 @@
 
 
 class CheckModuleState{
+    private:
 
-    Adafruit_PCF8574 pcd;
+        Adafruit_PCF8574 pcd;
 
-    int updateInterval;
-    int lastUpdate = 0;
+        int updateInterval;
+        int lastUpdate = 0;
 
-    int ModulesSolved[3];
-    int N_ModulesSolved = 0;
+        int Freamda_Win_Pin = 7;
 
-    int Freamda_Win_Pin = 7;
-    int Switch_Win_Pin = 5;
+        int Switch_Win_Pin = 5;
+        int Switch_Error_Pin = 6; // Fatal Error
 
-    bool GameOver = false;
+        int ModulesSolved[3];
+
+    public:
+        bool GameOver = false;
+        int N_ModulesSolved = 0;
+        int Errors = 0;
 
     public:
         CheckModuleState(int _updateInterval){
@@ -45,8 +50,6 @@ class CheckModuleState{
         for (int i=0; i<3; i++){
             N_ModulesSolved+= ModulesSolved[i];
         }
-
-        Serial.println(N_ModulesSolved);
       }
     }
 
