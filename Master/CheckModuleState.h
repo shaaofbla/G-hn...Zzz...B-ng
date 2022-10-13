@@ -21,8 +21,10 @@ class CheckModuleState{
 
     public:
         bool GameOver = false;
+        bool Changed = false;
         int N_ModulesSolved = 0;
         int Errors = 0;
+        
 
     public:
         CheckModuleState(int _updateInterval){
@@ -54,18 +56,25 @@ class CheckModuleState{
     }
 
     void CheckFremda(){
-        if (pcd.digitalRead(Freamda_Win_Pin) == 1){
+        if (pcd.digitalRead(Freamda_Win_Pin) == 1 && ModulesSolved[0] == 0){
             ModulesSolved[0] = 1;
+            Changed = true;
         }
     }
 
     void CheckSwitch(){
-        if(pcd.digitalRead(Switch_Win_Pin) == 1){
+        if(pcd.digitalRead(Switch_Win_Pin) == 1 && ModulesSolved[1] == 0){
             ModulesSolved[1] = 1;
+            Changed = true;
         }
         if (pcd.digitalRead(Switch_Error_Pin) == 1){
             GameOver = true;
+            Changed = true;
         }
+    }
+
+    void setChanged(bool changed){
+        Changed = changed;
     }
   
 };

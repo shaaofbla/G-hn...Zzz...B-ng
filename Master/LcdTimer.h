@@ -23,6 +23,10 @@ class LCDTimer{
       if((millis() - lastUpdate) > updateInterval){
         lastUpdate = millis();
         //lcd.setRGB((int)random(0,255),(int)random(0,255), (int)random(0,255));
+        float now = (float) millis();
+        float green = ((float) countDownTime-now)/(float) countDownTime*255; 
+        float red = 255-green;
+        lcd.setRGB((int) red,(int) green,0);
         showTime(lcd);
       }
     }
