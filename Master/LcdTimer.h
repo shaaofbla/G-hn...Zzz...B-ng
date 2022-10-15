@@ -12,6 +12,7 @@ class LCDTimer{
     int updateInterval;
     int lastUpdate = 0;
     int countDownTime;
+    bool timeOver = false;
 
   public:
     LCDTimer(int _updateInterval, int _countDownTime){
@@ -36,6 +37,7 @@ class LCDTimer{
         int showTime = countDownTime-millis();
         if (showTime < 0){
           showTime = 0;
+          timeOver = true;
         }
         String showTimeFormated = String();
         MBHelper::formatTimeMillis(showTime, showTimeFormated);

@@ -26,7 +26,7 @@ byte heart[8] = {
     0b11111,
     0b11111,
     0b01110,
-    0b00100,¨ 
+    0b00100,
     0b00000
 };
 
@@ -88,15 +88,24 @@ void loop(){
     lcd.print("You are lost...");
     lcd.autoscroll();
     delay(60000);
+    lcd.noBlinkLED();
     lcd.noDisplay();
   } else {
       
       lcdTimer.Update(lcd);
+      if(lcdTimer.timeOver){
+        Serial.print("Time Over");
+        CheckModuleState.GameOver = true;
+      }
+
       CheckModuleState.Update();
       if (CheckModuleState.Changed){
         lcdMenu.Update(lcd, CheckModuleState.Errors, 
           CheckModuleState.N_ModulesSolved);
+        Osc.sendModuleStates(CheckModuleState.Errors, CheckModuleState.N_ModulesSolved);
+
         CheckModuleState.setChanged(false);
       }
+      
     }
   }

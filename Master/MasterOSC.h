@@ -1,16 +1,11 @@
 #ifndef MasterOSC_h
 #define MasterOSC_h
 
-#ifdef ESP8266
 #include <ESP8266WiFi.h>
-#else
-#include <WiFi.h>
-#endif
 #include <WiFiUdp.h>
 #include <OSCMessage.h>
 #include <OSCBundle.h>
 #include <OSCData.h>
-
 
 
 class MasterOsc{
@@ -18,10 +13,9 @@ class MasterOsc{
         WiFiUDP Udp;
         OSCErrorCode error;
 
-        char ssid[15] = "AndroidAP2F88";
-        char pass[12] = "Ramba2000!";
+        char ssid[15] = "WeAre";
+        char pass[12] = "nothing!";
 
-        
         unsigned int outPort;
         unsigned int localPort;
         
@@ -47,12 +41,13 @@ class MasterOsc{
 
         delay(5000);
         lcd.clear();
+        Udp.begin(localPort);
 
     }
 
     static void start(OSCMessage &msg){
         Serial.print(msg.getInt(0));
-        Serial.print("msg received");
+        //Serial.print("msg received");
     }
 
     void Update(){
@@ -64,19 +59,24 @@ class MasterOsc{
                 msg.fill(Udp.read());
             }
             if (!msg.hasError()){
+                //Serial.println("message Received");
                 msg.dispatch("/start", start);
             }
         }
     }
 
-    void send(String address, int _msg){
-        OSCMessage msg("/something");
+    void send(const char* address, int _msg){
+        OSCMessage msg(address);
         msg.add(_msg);
-        IPAddress outIp(192,168,106,60);
+        IPAddress outIp(192,168,1,102);
         Udp.beginPacket(outIp, outPort);
         msg.send(Udp);
         Udp.endPacket();
         msg.empty();
+    }
+
+    void sendModuleStates(int Errors, int Modules){
+        send("/state",10*Errors + Modules);
     }
 
 };
