@@ -54,7 +54,7 @@ class CheckModuleState{
 
             pcd.pinMode(Needy_Error_Pin, INPUT);
 
-            delay(2000);
+            delay(1000);
 
         }
 
@@ -63,7 +63,9 @@ class CheckModuleState{
         lastUpdate = millis();
 
         CheckFremda();
-        //CheckSwitch();
+        CheckSwitch();
+        CheckMaze();
+        CheckNeedy();
 
         N_ModulesSolved = 0;
 
@@ -80,6 +82,7 @@ class CheckModuleState{
     }
 
     void CheckFremda(){
+        //Serial.println(pcd.digitalRead(Fremda_Win_Pin));
         if (pcd.digitalRead(Fremda_Win_Pin) == 1 && ModulesSolved[0] == 0){
             ModulesSolved[0] = 1;
             Changed = true;
@@ -87,6 +90,10 @@ class CheckModuleState{
     }
 
     void CheckSwitch(){
+        //Serial.print(pcd.digitalRead(Switch_Win_Pin));
+        //Serial.print(" ");
+        //Serial.println(pcd.digitalRead(Switch_Error_Pin));
+        
         if(pcd.digitalRead(Switch_Win_Pin) == 1 && ModulesSolved[1] == 0){
             ModulesSolved[1] = 1;
             Serial.println("Switch Solved");
@@ -100,13 +107,18 @@ class CheckModuleState{
     }
 
     void CheckMaze(){
+        //Serial.print(pcd.digitalRead(Maze_Win_Pin));
+        //Serial.print(" ");
+        //Serial.println(pcd.digitalRead(Maze_Error_Pin));
         if (pcd.digitalRead(Maze_Win_Pin) == 1 && ModulesSolved[2] == 0){
             ModulesSolved[2] = 1;
             Changed = true;
         }
+        //Serial.println(millis()-Maze_last_Error>Maze_debounce_Time);
 
         if (pcd.digitalRead(Maze_Error_Pin) == 1 && millis()-Maze_last_Error > Maze_debounce_Time){
             Errors++;
+            //Serial.println(Errors);
             Changed = true;
             Maze_last_Error = millis();
         }
@@ -124,6 +136,5 @@ class CheckModuleState{
     void setChanged(bool changed){
         Changed = changed;
     }
-  
 };
 #endif

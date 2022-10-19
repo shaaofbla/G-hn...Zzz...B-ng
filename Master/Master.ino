@@ -52,6 +52,17 @@ byte bell[8] = {
     0b00000
 };
 
+byte del[8] = {
+  	0b00000,
+    0b00000,
+    0b00000,
+    0b00000,
+    0b00000,
+    0b00000,
+    0b00000,
+    0b00000
+};
+
 int minutes = 5;
 LCDTimer lcdTimer(1000, minutes * 60 * 1000);
 LCDMenu lcdMenu(100);
@@ -69,6 +80,7 @@ void setup(){
   lcd.customSymbol(0, heart);
   lcd.customSymbol(1, tick);
   lcd.customSymbol(2, bell);
+  lcd.customSymbol(3, del);
   Osc.init(lcd);
   Osc.send("/some",78);
   lcdMenu.init(lcd);

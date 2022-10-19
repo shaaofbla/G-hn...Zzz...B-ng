@@ -12,10 +12,12 @@ class MasterOsc{
     private:
         WiFiUDP Udp;
         OSCErrorCode error;
-
+        /*
         char ssid[15] = "WeAre";
         char pass[12] = "nothing!";
-
+        */
+        char ssid[15] = "Rambanetz";
+        char pass[12] = "Ramba2000!";
         unsigned int outPort;
         unsigned int localPort;
         

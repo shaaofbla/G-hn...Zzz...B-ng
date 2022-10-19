@@ -52,12 +52,13 @@ class LCDMenu{
   }
   
   void Errors(DFRobot_RGBLCD1602 lcd, int errors){
+    Serial.println(errors);
     if (errors == 1){
-      lcd.setCursor(7,1);
-      lcd.print(" ");
+      lcd.setCursor(7,0);
+      lcd.write(3);
     } else if (errors == 2){
-      lcd.setCursor(8,1);
-      lcd.print(" ");
+      lcd.setCursor(8,0);
+      lcd.write(3);
     }
   }
 
