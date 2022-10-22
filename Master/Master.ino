@@ -19,6 +19,60 @@
 
 DFRobot_RGBLCD1602 lcd(16,2);
 
+class Needy{
+  public:
+    bool on = false;
+    int pin;
+    int startMillis;
+    bool offInThisRound = false; //If the Needy module shouldnt turn on.
+
+  public:
+    Needy(int needyPin){
+      pin = needyPin;
+      pinMode(needyPin, OUTPUT);
+      digitalWrite(needyPin, 1);
+    }
+
+    void init(int startEarliest, int startLatest){
+      if (startEarliest==0){
+        offInThisRound == true;
+        Serial.println("Off this round.");
+      } else {
+      Serial.print(startEarliest);
+      Serial.print(" ");
+      Serial.println(startLatest);
+
+      startMillis = random(startLatest*1000, startEarliest*1000)*60;
+      Serial.println(startMillis);
+      //startMillis *= 60*1000;
+
+      Serial.println((float)startMillis/(60.*1000.));
+      }
+    }
+
+    void turnOn(){
+      if (!offInThisRound){
+        digitalWrite(pin, 0);
+        on = true;
+      }
+    }
+
+    void turnOff(){
+      digitalWrite(pin,1);
+      on = false;
+    }
+
+    void checkStartTime(int gameTime,DFRobot_RGBLCD1602 lcd){
+      Serial.println(gameTime<=startMillis);
+      if (gameTime <= startMillis){
+        turnOn();
+        lcd.setCursor(6,1);
+        lcd.print("NEEDY");
+      }
+    }
+
+};
+
 byte heart[8] = {
     0b00000,
     0b01010,
@@ -63,11 +117,20 @@ byte del[8] = {
     0b00000
 };
 
-int minutes = 5;
-LCDTimer lcdTimer(1000, minutes * 60 * 1000);
+LCDTimer lcdTimer(1000, 5 * 60 * 1000);
 LCDMenu lcdMenu(100);
 CheckModuleState CheckModuleState(100);
+
 MasterOsc Osc;
+
+int NeedyPin = D6;
+Needy needy(NeedyPin);
+
+bool displayInitialView = false;
+bool displayGameOverView = false;
+bool displayWinView = false;
+
+bool GameIsRunning = false;
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -82,42 +145,104 @@ void setup(){
   lcd.customSymbol(2, bell);
   lcd.customSymbol(3, del);
   Osc.init(lcd);
-  Osc.send("/some",78);
-  lcdMenu.init(lcd);
+  //Osc.send("/some",78);
+  lcdMenu.init(lcd,5);
+  //pinMode(D6, OUTPUT);
+  //digitalWrite(D6,1);
 }
 
 void loop(){
   Osc.Update();
-  //lcdMenu.Update(lcd);
-  //Serial.println(lcdMenu.fid);
+  ///////Start Game? /////// 
+  if (Osc.startSignalReceived && !GameIsRunning){
+      GameIsRunning = true;
+      lcdTimer.gameLengthInMillis = Osc.GameLength*1000*60;
+      CheckModuleState.Reset();
+      needy.init(Osc.NeedyStartEarliest, Osc.NeedyStartLatest);
+      //needy.turnOn();
+  }
+  ///////Stop Game? /////// 
+  if (Osc.stopSignalReceived){
+    GameIsRunning = false;
+    displayInitialView = false;
+    Osc.stopSignalReceived = false;
+    CheckModuleState.Reset();
+    needy.turnOff();
+  }
+
+  /////// Game Over? /////// 
   if (CheckModuleState.GameOver){
-    lcd.clear();
-    lcd.setRGB(255,0,0);
-    lcd.blinkLED();
-    lcd.setCursor(0,0);
-    lcd.print("GAME OVER");
-    lcd.setCursor(0,1);
-    lcd.print("You are lost...");
-    lcd.autoscroll();
-    delay(60000);
-    lcd.noBlinkLED();
-    lcd.noDisplay();
+    if (!displayGameOverView){
+      Osc.send("/gameOver",0);
+      lcd.clear();
+      lcd.setRGB(255,0,0);
+      lcd.blinkLED();
+      lcd.setCursor(0,0);
+      lcd.print("GAME OVER");
+      lcd.setCursor(0,1);
+      lcd.print("You are lost...");
+      displayGameOverView = true;
+      GameIsRunning = false;
+      needy.turnOff();
+    }    
+
+  } else if (CheckModuleState.Win){
+    /////// Game Won? ///////  
+    if (!displayWinView){
+      Osc.send("/win", 0);
+      lcd.clear();
+      lcd.setRGB(0,255,0);
+      lcd.blinkLED();
+      lcd.setCursor(0,0);
+      lcd.print("!! YOU WIN !!");
+      lcd.setCursor(0,1);
+      lcd.print("Let't dream...");
+      displayWinView = true;
+      needy.turnOff();
+    }
+  } else if (!GameIsRunning){
+     /////// Display Initial View? ///////
+    if (!displayInitialView){
+      lcd.noBlinkLED();
+      lcd.clear();
+      lcd.setRGB(0,0,255);
+      lcd.setCursor(0,0);
+      lcd.print("Dream-Generator");
+      lcd.setCursor(0,1);
+      lcd.print("Call 3 for Help.");
+      displayInitialView = true;
+      displayWinView = false;
+      displayGameOverView = false;
+    }
   } else {
+      /////// Game running ///////
+      if(Osc.startSignalReceived){
+        Serial.println("Start signal received.");
+      
+        lcdMenu.init(lcd, Osc.GameLength);
+        delay(2000);
+        Osc.startSignalReceived = false;
+        lcdTimer.setStartTime(millis());
+      }
       
       lcdTimer.Update(lcd);
+      if (!needy.on){
+        needy.checkStartTime(lcdTimer.countdownTime, lcd);
+      }
       if(lcdTimer.timeOver){
         Serial.print("Time Over");
         CheckModuleState.GameOver = true;
       }
 
-      CheckModuleState.Update();
+      CheckModuleState.Update();      
       if (CheckModuleState.Changed){
         lcdMenu.Update(lcd, CheckModuleState.Errors, 
           CheckModuleState.N_ModulesSolved);
         Osc.sendModuleStates(CheckModuleState.Errors, CheckModuleState.N_ModulesSolved);
-
         CheckModuleState.setChanged(false);
       }
       
     }
   }
+
+

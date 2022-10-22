@@ -21,11 +21,12 @@ class LCDMenu{
 
     }
 
-  void init(DFRobot_RGBLCD1602 lcd){
+  void init(DFRobot_RGBLCD1602 lcd, int gameLength){
     //lcd.print("Welcome");
+    lcd.clear();
     lcd.noBlinkLED();
     lcd.display();
-    initTime(lcd);
+    initTime(lcd, gameLength);
     initErrors(lcd);
     initModulesSolved(lcd);
   }
@@ -35,9 +36,20 @@ class LCDMenu{
       ModulesSolved(lcd, N_ModuleSolved);
   }
 
-  void initTime(DFRobot_RGBLCD1602 lcd){
+  void initTime(DFRobot_RGBLCD1602 lcd, int gameLength){
     lcd.setCursor(0,0);
     lcd.write(2);
+    lcd.setCursor(0,1);
+    if (gameLength<10){
+      //lcd.setCursor(0,1);
+      lcd.print("0");
+      lcd.setCursor(1,1);
+      lcd.print(gameLength);
+    } else {
+      lcd.print(gameLength);
+    }
+    lcd.setCursor(2,1);
+    lcd.print(":00");
   }
 
   void initErrors(DFRobot_RGBLCD1602 lcd){
@@ -58,6 +70,9 @@ class LCDMenu{
       lcd.write(3);
     } else if (errors == 2){
       lcd.setCursor(8,0);
+      lcd.write(3);
+    } else if (errors == 3){
+      lcd.setCursor(9,0);
       lcd.write(3);
     }
   }

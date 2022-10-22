@@ -20,12 +20,24 @@ class MasterOsc{
         char pass[12] = "Ramba2000!";
         unsigned int outPort;
         unsigned int localPort;
+
+
         
     public:
+        static int GameLength; //Minutes
+        static int NeedyStartEarliest; //
+        static int NeedyStartLatest;
+        static bool startSignalReceived;
+
+        static bool stopSignalReceived;
 
     MasterOsc(){
         outPort = 9999;
         localPort = 8888;
+
+        GameLength = 0;
+        NeedyStartEarliest = 0;
+        NeedyStartLatest = 0;
     }
 
     void init(DFRobot_RGBLCD1602 lcd){
@@ -47,13 +59,7 @@ class MasterOsc{
 
     }
 
-    static void start(OSCMessage &msg){
-        Serial.print(msg.getInt(0));
-        //Serial.print("msg received");
-    }
-
     void Update(){
-        //Serial.println("updating");
         OSCMessage msg;
         int size = Udp.parsePacket();
         if (size > 0){
@@ -61,16 +67,35 @@ class MasterOsc{
                 msg.fill(Udp.read());
             }
             if (!msg.hasError()){
-                //Serial.println("message Received");
                 msg.dispatch("/start", start);
+                msg.dispatch("/stop", stop);
             }
         }
+    }
+
+    static void stop(OSCMessage &msg){
+        stopSignalReceived = true;
+    }
+
+    static void start(OSCMessage &msg){
+        
+    if (GameLength >= NeedyStartEarliest && 
+    NeedyStartEarliest >= NeedyStartLatest){
+        GameLength = msg.getInt(0);
+        NeedyStartEarliest = (int) msg.getInt(1);
+        NeedyStartLatest = msg.getInt(2);
+        startSignalReceived = true;
+        }
+    }
+
+    static void setGameLength(int gameLength){
+        GameLength = gameLength;
     }
 
     void send(const char* address, int _msg){
         OSCMessage msg(address);
         msg.add(_msg);
-        IPAddress outIp(192,168,1,102);
+        IPAddress outIp(192,168,1,100);
         Udp.beginPacket(outIp, outPort);
         msg.send(Udp);
         Udp.endPacket();
@@ -78,9 +103,16 @@ class MasterOsc{
     }
 
     void sendModuleStates(int Errors, int Modules){
-        send("/state",10*Errors + Modules);
+        send("/errors",Errors);
+        send("/modules", Modules);
     }
 
 };
+
+int MasterOsc::GameLength = 0;
+int MasterOsc::NeedyStartEarliest = 0;
+int MasterOsc::NeedyStartLatest = 0;
+bool MasterOsc::startSignalReceived = false;
+bool MasterOsc::stopSignalReceived = false;
 
 #endif
