@@ -1,0 +1,831 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="100%"
+   height="100%"
+   viewBox="0 0 300 300"
+   preserveAspectRatio="xMidYMid meet"
+   version="1.1"
+   id="svg1211"
+   sodipodi:docname="maze2.svg"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1215" />
+  <sodipodi:namedview
+     id="namedview1213"
+     pagecolor="#ffffff"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="2.7966667"
+     inkscape:cx="150"
+     inkscape:cy="149.82122"
+     inkscape:window-width="948"
+     inkscape:window-height="971"
+     inkscape:window-x="964"
+     inkscape:window-y="64"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg1211" />
+  <circle
+     cx="175"
+     cy="175"
+     r="15"
+     stroke="black"
+     fill="none"
+     stroke-width="1"
+     id="circle1135"
+     style="fill:#00ff00" />
+  <circle
+     cx="275"
+     cy="175"
+     r="15"
+     stroke="black"
+     fill="none"
+     stroke-width="1"
+     id="circle1193"
+     style="fill:#00ff00" />
+  <circle
+     cx="25"
+     cy="25"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1037" />
+  <line
+     x1="0"
+     x2="50"
+     y1="0"
+     y2="0"
+     stroke="black"
+     stroke-width="10"
+     stroke-dasharray=""
+     fill="none"
+     id="line1039" />
+  <line
+     x1="0"
+     x2="0"
+     y1="0"
+     y2="50"
+     stroke="black"
+     stroke-width="10"
+     stroke-dasharray=""
+     fill="none"
+     id="line1041" />
+  <circle
+     cx="25"
+     cy="75"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1043" />
+  <line
+     x1="0"
+     x2="0"
+     y1="50"
+     y2="100"
+     stroke="black"
+     stroke-width="10"
+     stroke-dasharray=""
+     fill="none"
+     id="line1045" />
+  <circle
+     cx="25"
+     cy="125"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1047" />
+  <line
+     x1="0"
+     x2="50"
+     y1="100"
+     y2="100"
+     stroke="black"
+     stroke-width="3"
+     stroke-dasharray=""
+     fill="none"
+     id="line1049" />
+  <line
+     x1="0"
+     x2="0"
+     y1="100"
+     y2="150"
+     stroke="black"
+     stroke-width="10"
+     stroke-dasharray=""
+     fill="none"
+     id="line1051" />
+  <circle
+     cx="25"
+     cy="175"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1053" />
+  <line
+     x1="0"
+     x2="0"
+     y1="150"
+     y2="200"
+     stroke="black"
+     stroke-width="10"
+     stroke-dasharray=""
+     fill="none"
+     id="line1055" />
+  <circle
+     cx="25"
+     cy="225"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1057" />
+  <line
+     x1="0"
+     x2="0"
+     y1="200"
+     y2="250"
+     stroke="black"
+     stroke-width="10"
+     stroke-dasharray=""
+     fill="none"
+     id="line1059" />
+  <circle
+     cx="25"
+     cy="275"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1061" />
+  <line
+     x1="0"
+     x2="0"
+     y1="250"
+     y2="300"
+     stroke="black"
+     stroke-width="10"
+     stroke-dasharray=""
+     fill="none"
+     id="line1063" />
+  <line
+     x1="0"
+     x2="50"
+     y1="300"
+     y2="300"
+     stroke="black"
+     stroke-width="10"
+     stroke-dasharray=""
+     fill="none"
+     id="line1065" />
+  <circle
+     cx="75"
+     cy="25"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1067" />
+  <line
+     x1="50"
+     x2="100"
+     y1="0"
+     y2="0"
+     stroke="black"
+     stroke-width="10"
+     stroke-dasharray=""
+     fill="none"
+     id="line1069" />
+  <circle
+     cx="75"
+     cy="75"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1071" />
+  <line
+     x1="50"
+     x2="100"
+     y1="50"
+     y2="50"
+     stroke="black"
+     stroke-width="3"
+     stroke-dasharray=""
+     fill="none"
+     id="line1073" />
+  <line
+     x1="50"
+     x2="50"
+     y1="50"
+     y2="100"
+     stroke="black"
+     stroke-width="3"
+     stroke-dasharray=""
+     fill="none"
+     id="line1075" />
+  <circle
+     cx="75"
+     cy="125"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1077" />
+  <circle
+     cx="75"
+     cy="175"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1079" />
+  <line
+     x1="50"
+     x2="50"
+     y1="150"
+     y2="200"
+     stroke="black"
+     stroke-width="3"
+     stroke-dasharray=""
+     fill="none"
+     id="line1081" />
+  <circle
+     cx="75"
+     cy="225"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1083" />
+  <line
+     x1="50"
+     x2="50"
+     y1="200"
+     y2="250"
+     stroke="black"
+     stroke-width="3"
+     stroke-dasharray=""
+     fill="none"
+     id="line1085" />
+  <circle
+     cx="75"
+     cy="275"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1087" />
+  <line
+     x1="50"
+     x2="100"
+     y1="250"
+     y2="250"
+     stroke="black"
+     stroke-width="3"
+     stroke-dasharray=""
+     fill="none"
+     id="line1089" />
+  <line
+     x1="50"
+     x2="100"
+     y1="300"
+     y2="300"
+     stroke="black"
+     stroke-width="10"
+     stroke-dasharray=""
+     fill="none"
+     id="line1091" />
+  <circle
+     cx="125"
+     cy="25"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1093" />
+  <line
+     x1="100"
+     x2="150"
+     y1="0"
+     y2="0"
+     stroke="black"
+     stroke-width="10"
+     stroke-dasharray=""
+     fill="none"
+     id="line1095" />
+  <circle
+     cx="125"
+     cy="75"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1097" />
+  <line
+     x1="100"
+     x2="100"
+     y1="50"
+     y2="100"
+     stroke="black"
+     stroke-width="3"
+     stroke-dasharray=""
+     fill="none"
+     id="line1099" />
+  <circle
+     cx="125"
+     cy="125"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1101" />
+  <line
+     x1="100"
+     x2="100"
+     y1="100"
+     y2="150"
+     stroke="black"
+     stroke-width="3"
+     stroke-dasharray=""
+     fill="none"
+     id="line1103" />
+  <circle
+     cx="125"
+     cy="175"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1105" />
+  <line
+     x1="100"
+     x2="100"
+     y1="150"
+     y2="200"
+     stroke="black"
+     stroke-width="3"
+     stroke-dasharray=""
+     fill="none"
+     id="line1107" />
+  <circle
+     cx="125"
+     cy="225"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1109" />
+  <circle
+     cx="125"
+     cy="275"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1111" />
+  <line
+     x1="100"
+     x2="150"
+     y1="250"
+     y2="250"
+     stroke="black"
+     stroke-width="3"
+     stroke-dasharray=""
+     fill="none"
+     id="line1113" />
+  <line
+     x1="100"
+     x2="150"
+     y1="300"
+     y2="300"
+     stroke="black"
+     stroke-width="10"
+     stroke-dasharray=""
+     fill="none"
+     id="line1115" />
+  <circle
+     cx="175"
+     cy="25"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1117" />
+  <line
+     x1="150"
+     x2="200"
+     y1="0"
+     y2="0"
+     stroke="black"
+     stroke-width="10"
+     stroke-dasharray=""
+     fill="none"
+     id="line1119" />
+  <line
+     x1="150"
+     x2="150"
+     y1="0"
+     y2="50"
+     stroke="black"
+     stroke-width="3"
+     stroke-dasharray=""
+     fill="none"
+     id="line1121" />
+  <circle
+     cx="175"
+     cy="75"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1123" />
+  <line
+     x1="150"
+     x2="150"
+     y1="50"
+     y2="100"
+     stroke="black"
+     stroke-width="3"
+     stroke-dasharray=""
+     fill="none"
+     id="line1125" />
+  <circle
+     cx="175"
+     cy="125"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1127" />
+  <line
+     x1="150"
+     x2="200"
+     y1="100"
+     y2="100"
+     stroke="black"
+     stroke-width="3"
+     stroke-dasharray=""
+     fill="none"
+     id="line1129" />
+  <line
+     x1="150"
+     x2="150"
+     y1="100"
+     y2="150"
+     stroke="black"
+     stroke-width="3"
+     stroke-dasharray=""
+     fill="none"
+     id="line1131" />
+  <circle
+     cx="175"
+     cy="175"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1133" />
+  <line
+     x1="150"
+     x2="150"
+     y1="150"
+     y2="200"
+     stroke="black"
+     stroke-width="3"
+     stroke-dasharray=""
+     fill="none"
+     id="line1137" />
+  <circle
+     cx="175"
+     cy="225"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1139" />
+  <line
+     x1="150"
+     x2="150"
+     y1="200"
+     y2="250"
+     stroke="black"
+     stroke-width="3"
+     stroke-dasharray=""
+     fill="none"
+     id="line1141" />
+  <circle
+     cx="175"
+     cy="275"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1143" />
+  <line
+     x1="150"
+     x2="200"
+     y1="300"
+     y2="300"
+     stroke="black"
+     stroke-width="10"
+     stroke-dasharray=""
+     fill="none"
+     id="line1145" />
+  <circle
+     cx="225"
+     cy="25"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1147" />
+  <line
+     x1="200"
+     x2="250"
+     y1="0"
+     y2="0"
+     stroke="black"
+     stroke-width="10"
+     stroke-dasharray=""
+     fill="none"
+     id="line1149" />
+  <line
+     x1="200"
+     x2="200"
+     y1="0"
+     y2="50"
+     stroke="black"
+     stroke-width="3"
+     stroke-dasharray=""
+     fill="none"
+     id="line1151" />
+  <circle
+     cx="225"
+     cy="75"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1153" />
+  <circle
+     cx="225"
+     cy="125"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1155" />
+  <line
+     x1="200"
+     x2="250"
+     y1="100"
+     y2="100"
+     stroke="black"
+     stroke-width="3"
+     stroke-dasharray=""
+     fill="none"
+     id="line1157" />
+  <circle
+     cx="225"
+     cy="175"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1159" />
+  <line
+     x1="200"
+     x2="200"
+     y1="150"
+     y2="200"
+     stroke="black"
+     stroke-width="3"
+     stroke-dasharray=""
+     fill="none"
+     id="line1161" />
+  <circle
+     cx="225"
+     cy="225"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1163" />
+  <line
+     x1="200"
+     x2="200"
+     y1="200"
+     y2="250"
+     stroke="black"
+     stroke-width="3"
+     stroke-dasharray=""
+     fill="none"
+     id="line1165" />
+  <circle
+     cx="225"
+     cy="275"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1167" />
+  <line
+     x1="200"
+     x2="200"
+     y1="250"
+     y2="300"
+     stroke="black"
+     stroke-width="3"
+     stroke-dasharray=""
+     fill="none"
+     id="line1169" />
+  <line
+     x1="200"
+     x2="250"
+     y1="300"
+     y2="300"
+     stroke="black"
+     stroke-width="10"
+     stroke-dasharray=""
+     fill="none"
+     id="line1171" />
+  <circle
+     cx="275"
+     cy="25"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1173" />
+  <line
+     x1="250"
+     x2="300"
+     y1="0"
+     y2="0"
+     stroke="black"
+     stroke-width="10"
+     stroke-dasharray=""
+     fill="none"
+     id="line1175" />
+  <line
+     x1="300"
+     x2="300"
+     y1="0"
+     y2="50"
+     stroke="black"
+     stroke-width="10"
+     stroke-dasharray=""
+     fill="none"
+     id="line1177" />
+  <circle
+     cx="275"
+     cy="75"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1179" />
+  <line
+     x1="250"
+     x2="250"
+     y1="50"
+     y2="100"
+     stroke="black"
+     stroke-width="3"
+     stroke-dasharray=""
+     fill="none"
+     id="line1181" />
+  <line
+     x1="300"
+     x2="300"
+     y1="50"
+     y2="100"
+     stroke="black"
+     stroke-width="10"
+     stroke-dasharray=""
+     fill="none"
+     id="line1183" />
+  <circle
+     cx="275"
+     cy="125"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1185" />
+  <line
+     x1="250"
+     x2="250"
+     y1="100"
+     y2="150"
+     stroke="black"
+     stroke-width="3"
+     stroke-dasharray=""
+     fill="none"
+     id="line1187" />
+  <line
+     x1="300"
+     x2="300"
+     y1="100"
+     y2="150"
+     stroke="black"
+     stroke-width="10"
+     stroke-dasharray=""
+     fill="none"
+     id="line1189" />
+  <circle
+     cx="275"
+     cy="175"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1191" />
+  <line
+     x1="250"
+     x2="250"
+     y1="150"
+     y2="200"
+     stroke="black"
+     stroke-width="3"
+     stroke-dasharray=""
+     fill="none"
+     id="line1195" />
+  <line
+     x1="300"
+     x2="300"
+     y1="150"
+     y2="200"
+     stroke="black"
+     stroke-width="10"
+     stroke-dasharray=""
+     fill="none"
+     id="line1197" />
+  <circle
+     cx="275"
+     cy="225"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1199" />
+  <line
+     x1="250"
+     x2="250"
+     y1="200"
+     y2="250"
+     stroke="black"
+     stroke-width="3"
+     stroke-dasharray=""
+     fill="none"
+     id="line1201" />
+  <line
+     x1="300"
+     x2="300"
+     y1="200"
+     y2="250"
+     stroke="black"
+     stroke-width="10"
+     stroke-dasharray=""
+     fill="none"
+     id="line1203" />
+  <circle
+     cx="275"
+     cy="275"
+     r="3"
+     stroke="black"
+     fill="grey"
+     stroke-width="1"
+     id="circle1205" />
+  <line
+     x1="300"
+     x2="300"
+     y1="250"
+     y2="300"
+     stroke="black"
+     stroke-width="10"
+     stroke-dasharray=""
+     fill="none"
+     id="line1207" />
+  <line
+     x1="250"
+     x2="300"
+     y1="300"
+     y2="300"
+     stroke="black"
+     stroke-width="10"
+     stroke-dasharray=""
+     fill="none"
+     id="line1209" />
+</svg>
