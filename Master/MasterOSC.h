@@ -16,7 +16,8 @@ class MasterOsc{
         char ssid[15] = "WeAre";
         char pass[12] = "nothing!";
         */
-        char ssid[15] = "Rambanetz";
+
+        char ssid[15] = "AndroidAP2F88";
         char pass[12] = "Ramba2000!";
         unsigned int outPort;
         unsigned int localPort;
@@ -32,8 +33,8 @@ class MasterOsc{
         static bool stopSignalReceived;
 
     MasterOsc(){
-        outPort = 9999;
-        localPort = 8888;
+        outPort = 4901;
+        localPort = 4900;
 
         GameLength = 0;
         NeedyStartEarliest = 0;
@@ -95,7 +96,7 @@ class MasterOsc{
     void send(const char* address, int _msg){
         OSCMessage msg(address);
         msg.add(_msg);
-        IPAddress outIp(192,168,1,100);
+        IPAddress outIp(192,168,160,129);
         Udp.beginPacket(outIp, outPort);
         msg.send(Udp);
         Udp.endPacket();
