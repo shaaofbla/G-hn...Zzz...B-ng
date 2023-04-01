@@ -35,6 +35,7 @@
             "includePath": [
                 "/Users/danielschmocker/Library/Arduino15/packages/esp8266/hardware/esp8266/3.0.2/tools/sdk/include",
                 "/Users/danielschmocker/Library/Arduino15/packages/esp8266/hardware/esp8266/3.0.2/tools/sdk/lwip2/include",
+                "/private/var/folders/x3/2r8_3v_970n0zp8k55xyx57c0000gn/T/arduino/sketches/0A3F4A0E15B3F3B236960398B221370A/core",
                 "/Users/danielschmocker/Library/Arduino15/packages/esp8266/hardware/esp8266/3.0.2/cores/esp8266",
                 "/Users/danielschmocker/Library/Arduino15/packages/esp8266/hardware/esp8266/3.0.2/variants/nodemcu",
                 "/Users/danielschmocker/Documents/Arduino/libraries/mbLib/src",
@@ -69,7 +70,7 @@
                 "TCP_MSS=536",
                 "LWIP_FEATURES=1",
                 "LWIP_IPV6=0",
-                "ARDUINO=10819",
+                "ARDUINO=10607",
                 "ARDUINO_ESP8266_NODEMCU_ESP12E",
                 "ARDUINO_ARCH_ESP8266",
                 "ARDUINO_BOARD=\"ESP8266_NODEMCU_ESP12E\"",
