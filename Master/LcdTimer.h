@@ -6,35 +6,48 @@
 
 class LCDTimer{
   public:
-    int colorR = 255;
-    int colorG = 0;
-    int colorB = 0;
+  
     int updateInterval;
     int lastUpdate = 0;
-    int countDownTime;
+    int gameLengthInMillis;
+    int startTime;
+    int countdownTime;
+
+    bool timeOver = false;
 
   public:
     LCDTimer(int _updateInterval, int _countDownTime){
       updateInterval = _updateInterval;
-      countDownTime = _countDownTime;
+      gameLengthInMillis = _countDownTime;
     }
 
     void Update(DFRobot_RGBLCD1602 lcd){
       if((millis() - lastUpdate) > updateInterval){
         lastUpdate = millis();
-        //lcd.setRGB((int)random(0,255),(int)random(0,255), (int)random(0,255));
+        countdownTime = gameLengthInMillis-millis()+startTime;
+        float red = ((float) gameLengthInMillis-countdownTime)/(float) gameLengthInMillis*255; 
+        float green = 255-red;
+        lcd.setRGB((int) red,(int) green,0);
         showTime(lcd);
       }
     }
-  
+
+    void setGameLengthInMillis(int time){
+      gameLengthInMillis = time;
+    }
+    void setStartTime(int time){
+      startTime = time;
+    }
+
     void showTime(DFRobot_RGBLCD1602 lcd){
         lcd.setCursor(0, 1);
-        int showTime = countDownTime-millis();
-        if (showTime < 0){
-          showTime = 0;
+        
+        if (countdownTime < 0){
+          countdownTime = 0;
+          timeOver = true;
         }
         String showTimeFormated = String();
-        MBHelper::formatTimeMillis(showTime, showTimeFormated);
+        MBHelper::formatTimeMillis(countdownTime, showTimeFormated);
         lcd.print(showTimeFormated.substring(2,7));
     }
     
