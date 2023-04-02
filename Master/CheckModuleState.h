@@ -15,7 +15,9 @@ class CheckModuleState{
         int Fremda_Win_Pin = 7;
 
         int Switch_Win_Pin = 5;
-        int Switch_Error_Pin = 6; // Fatal Error-> direct GAME OVER
+        int Switch_Error_Pin = 6;
+        int Switch_debounce_Time = 1500;
+        int Switch_last_Error = 0;
 
         int Maze_Win_Pin = 3;
         int Maze_Error_Pin = 4;
@@ -125,9 +127,8 @@ class CheckModuleState{
             Serial.println("Switch Solved");
             Changed = true;
         }
-        if (pcd.digitalRead(Switch_Error_Pin) == 1){
-            GameOver = true;
-            Serial.println("Switch Fatal Error");
+        if (pcd.digitalRead(Switch_Error_Pin) == 1 && millis() - Switch_last_Error > Switch_debounce_Time){
+            Errors++;
             Changed = true;
         }
     }

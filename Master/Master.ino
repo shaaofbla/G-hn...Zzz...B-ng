@@ -9,14 +9,6 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-#define ROTARY_PIN1 D5
-#define ROTARY_PIN2 D6
-#define BUTTON_PIN D7
-
-#define CLICKS_PER_STEP 4
-
-//////////////////////////////////////////////////////////////////////////
-
 DFRobot_RGBLCD1602 lcd(16,2);
 
 class Needy{
@@ -145,10 +137,7 @@ void setup(){
   lcd.customSymbol(2, bell);
   lcd.customSymbol(3, del);
   Osc.init(lcd);
-  //Osc.send("/some",78);
   lcdMenu.init(lcd,5);
-  //pinMode(D6, OUTPUT);
-  //digitalWrite(D6,1);
 }
 
 void loop(){
