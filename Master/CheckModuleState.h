@@ -27,7 +27,6 @@ class CheckModuleState{
         int Needy_Error_Pin = 2;
         int Needy_debounce_Time = 1500; //1.5 sec
         int Needy_last_Error = 0;
-        //int Needy_OnOff_Pin = 0; //OUTPUT !!!
 
         int ModulesSolved[3];
 
