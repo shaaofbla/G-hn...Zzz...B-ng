@@ -129,6 +129,7 @@ class CheckModuleState{
         if (pcd.digitalRead(Switch_Error_Pin) == 1 && millis() - Switch_last_Error > Switch_debounce_Time){
             Errors++;
             Changed = true;
+            Switch_last_Error = millis();
         }
     }
 
