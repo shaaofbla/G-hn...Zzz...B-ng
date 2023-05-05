@@ -96,7 +96,7 @@ class MasterOsc{
     void send(const char* address, int _msg){
         OSCMessage msg(address);
         msg.add(_msg);
-        IPAddress outIp(192,168,160,129);
+        IPAddress outIp(192,168,127,129);
         Udp.beginPacket(outIp, outPort);
         msg.send(Udp);
         Udp.endPacket();

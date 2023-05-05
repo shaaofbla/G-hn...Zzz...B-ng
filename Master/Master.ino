@@ -185,7 +185,7 @@ void loop(){
       lcd.setCursor(0,0);
       lcd.print("!! YOU WIN !!");
       lcd.setCursor(0,1);
-      lcd.print("Let't dream...");
+      lcd.print("Let's dream...");
       displayWinView = true;
       needy.turnOff();
     }
