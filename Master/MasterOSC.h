@@ -29,8 +29,12 @@ class MasterOsc{
         static int NeedyStartEarliest; //
         static int NeedyStartLatest;
         static bool startSignalReceived;
-
         static bool stopSignalReceived;
+
+        static int Ip1;
+        static int Ip2;
+        static int Ip3;
+        static int Ip4;
 
     MasterOsc(){
         outPort = 4901;
@@ -93,10 +97,17 @@ class MasterOsc{
         GameLength = gameLength;
     }
 
+    static void setIpAddress(OSCMessage &msg){
+        Ip1 = msg.getInt(0);
+        Ip2 = msg.getInt(1);
+        Ip3 = msg.getInt(2); 
+        Ip4 = msg.getInt(3);
+    }
+
     void send(const char* address, int _msg){
         OSCMessage msg(address);
         msg.add(_msg);
-        IPAddress outIp(192,168,127,129);
+        IPAddress outIp(Ip1, Ip2, Ip3, Ip4);
         Udp.beginPacket(outIp, outPort);
         msg.send(Udp);
         Udp.endPacket();
@@ -115,5 +126,8 @@ int MasterOsc::NeedyStartEarliest = 0;
 int MasterOsc::NeedyStartLatest = 0;
 bool MasterOsc::startSignalReceived = false;
 bool MasterOsc::stopSignalReceived = false;
-
+int MasterOsc::Ip1 = 192;
+int MasterOsc::Ip2 = 168;
+int MasterOsc::Ip3 = 127;
+int MasterOsc::Ip4 = 129;
 #endif
