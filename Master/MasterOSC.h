@@ -74,6 +74,7 @@ class MasterOsc{
             if (!msg.hasError()){
                 msg.dispatch("/start", start);
                 msg.dispatch("/stop", stop);
+                msg.dispatch("/setIP", setIpAddress)
             }
         }
     }
